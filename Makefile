@@ -1,5 +1,5 @@
 setup :
-	python -m venv ./venv
+	python3 -m venv ./venv
 
 fclean :
 	rm -rf ./venv
