@@ -1,7 +1,5 @@
 import sys
 
-sys.path.insert(0, './modules/')
-
 # get and parse csv
 import pandas as pd
 import matplotlib.pyplot as plt

@@ -1,9 +1,6 @@
 import sys
 
-sys.path.insert(0, './modules/')
-
 import pandas as pd
-
 
 print("please enter a mileage to receive an estimation of price : ")
 
