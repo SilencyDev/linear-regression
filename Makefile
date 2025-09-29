@@ -7,4 +7,4 @@ fclean :
 re : fclean setup
 
 
-.PHONY: setup fclean
+.PHONY: setup fclean re
