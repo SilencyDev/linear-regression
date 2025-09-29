@@ -27,8 +27,8 @@ def denormalize(number, min, max):
 def denormalizeSlope(slope):
 	return slope * (maxPrice - minPrice)/(maxKm - minKm)
 
-def denormalizeIntercept(intercept, slope, min, max):
-	return denormalize(intercept, min, max) - denormalizeSlope(slope) * minKm
+def denormalizeIntercept(intercept, slope, minPrice, maxPrice):
+	return denormalize(intercept, minPrice, maxPrice) - denormalizeSlope(slope) * minKm
 
 kmsNormalize = normalize(kms, minKm, maxKm)
 pricesNormalize = normalize(prices, minPrice, maxPrice)
@@ -40,7 +40,7 @@ meanprices = sum(pricesNormalize) / len(pricesNormalize)
 slope = 0
 intercept = 0
 learningRate = 0.1
-iterations = 1000
+iterations = 10000
 
 def printGraph(slope, intercept, x, y, xlabel, ylabel):
 	ax.clear()
@@ -49,7 +49,6 @@ def printGraph(slope, intercept, x, y, xlabel, ylabel):
 	ax.plot(x, slope * x + intercept , color='red', label="linear regression")
 	ax.set_xlabel(xlabel)
 	ax.set_ylabel(ylabel)
-	# ax.plot(kms, -0.01933230365921051 * kms + 8277.034168116184 , color='red', label="linear regression")
 	# plt.show()
 	plt.pause(0.1)
 	
@@ -72,7 +71,6 @@ def gradient_descent(kmsNormalize, pricesNormalize, intercept, slope, learningRa
 		print(iteration, intercept, slope, learningRate)
 		if (iteration > (iterations - 50) or iteration % 10 == 0):
 			printGraph(denormalizeSlope(slope), denormalizeIntercept(intercept, slope, minPrice, maxPrice), kms, prices, "kms", "prices")
-			# printGraph(slope, intercept, kmsNormalize, pricesNormalize)
 			
 		
 	return intercept, slope
